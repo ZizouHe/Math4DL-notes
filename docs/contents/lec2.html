@@ -1,0 +1,392 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Lecture 2: Symmetries and Geometric Stability · CS3033 - Maths of Deep Learning</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-image-captions/image-captions.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"ZizouHe","repo":"Math4DL-notes","type":"star","size":"small"}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="lec2.html">
+            
+                <a href="lec2.html">
+            
+                    
+                    Lecture 2: Symmetries and Geometric Stability
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Lecture 2: Symmetries and Geometric Stability</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="lecture-2-symmetries-and-geometric-stability"><a name="lecture-2-symmetries-and-geometric-stability" class="anchor-navigation-ex-anchor" href="#lecture-2-symmetries-and-geometric-stability"><i class="fa fa-link" aria-hidden="true"></i></a><a name="lecture-2-symmetries-and-geometric-stability" class="plugin-anchor" href="#lecture-2-symmetries-and-geometric-stability"><i class="fa fa-link" aria-hidden="true"></i></a>Lecture 2: Symmetries and Geometric Stability</h2>
+<p><strong>Definition.</strong> A symmetry of <script type="math/tex; ">\mathcal{F}</script> is an invertible transformation <script type="math/tex; ">T: \mathcal{X} \rightarrow \mathcal{X}</script> s.t.</p>
+<p><script type="math/tex; mode=display">
+f(x) = f(T(x)), \forall f \in \mathcal{F}, \forall x \in \mathcal{X},
+</script></p>
+<p>where <script type="math/tex; ">\mathcal{F} = \{f: \mathcal{X} \rightarrow \mathbb{R}\}</script>.</p>
+<p>Q: how symmetries in <script type="math/tex; ">\mathcal{X}</script> related to symmetries in <script type="math/tex; ">\Omega</script>.</p>
+<p>The set of symmetries forms a group.</p>
+<p>Invariant and equivariant signal representations, <script type="math/tex; ">\Phi: \mathcal{X} \rightarrow \mathcal{Z}</script> (feature space).</p>
+<p><strong>Definition.</strong> A representation <script type="math/tex; ">\Phi: \mathcal{X} \rightarrow \mathcal{Z}</script> is invariant w.r.t. a group <script type="math/tex; ">\mathcal{G}</script> of transformations if</p>
+<p><script type="math/tex; mode=display">
+\Phi(Tx) = \Phi(x), \; \forall x \in \mathcal{X}, \forall T \in \mathcal{G}.
+</script></p>
+<p><strong>Definition.</strong> A representation <script type="math/tex; ">\Phi: \mathcal{X} \rightarrow \mathcal{Z}</script> is equivariant w.r.t. a group <script type="math/tex; ">\mathcal{G}</script> of transformations if</p>
+<p><script type="math/tex; mode=display">
+\Phi(T x) = \tilde{T} \Phi(x), \; \tilde{T} \in \tilde{\mathcal{G}} \simeq \mathcal{G}.
+</script></p>
+<p>Once we find a good representation,</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+\hat{f}(x) &= \langle \theta, \phi(x) \rangle, \; \; \text{regression} \\
+&= \Gamma \left(\langle \theta, \phi(x) \rangle \right), \; \; \text{classification}
+\end{aligned}.
+</script></p>
+<p><strong>Example.</strong> <script type="math/tex; ">x(u) \in L_1(\mathbb{R})</script>,</p>
+<p><script type="math/tex; mode=display">
+\Phi(x) = \int_{-\infty}^\infty x(u) \mathrm{d} \, u.
+</script></p>
+<p>Q: is <script type="math/tex; ">\Phi(\cdot)</script> invariant to translation <script type="math/tex; ">T_\tau = x(u-\tau)</script>. Yes.</p>
+<p><strong>Example.</strong> <script type="math/tex; ">x(u) \in L_1(\mathbb{R})</script>, <script type="math/tex; ">x(\cdot)</script> is bounded,</p>
+<p><script type="math/tex; mode=display">
+\Phi(x) = \lim_{N\rightarrow \infty} \frac{1}{2N} \int_{-N}^N x(u) \mathrm{d} \, u.
+</script></p>
+<p>Q: is <script type="math/tex; ">\Phi(\cdot)</script> invariant to translation.</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+\int_{-N}^N T_\tau x(u) \mathrm{d} \, u &= \int_{-N}^N x(u) \mathrm{d} \, u + \int_{N}^{N+\tau} x(u) \mathrm{d} \, u - \int^{-N}_{-N+\tau} x(u) \mathrm{d} \, u.
+\end{aligned}
+</script></p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+\Phi_N(x_\tau) &= \frac{1}{2N} \int_{-N}^N T_\tau x(u) \mathrm{d} \, u \\
+&= \Phi_N(x) + \frac{1}{2N} \left[\int_{N}^{N+\tau} x(u) \mathrm{d} \, u - \int^{-N}_{-N+\tau} x(u) \mathrm{d} \, u\right].
+\end{aligned}
+</script></p>
+<p>Therefore,</p>
+<p><script type="math/tex; mode=display">
+\left|\Phi_N(x_\tau) - \Phi_N(x) \right| \leq \frac{\tau}{N} \| x \|_\infty \rightarrow 0.
+</script></p>
+<p><strong>Example.</strong> <script type="math/tex; ">x(u) \in L_1(\mathbb{R})</script>, <script type="math/tex; ">x(\cdot)</script> has compact support,</p>
+<p><script type="math/tex; mode=display">
+\Phi(x) = \frac{\int u |x(u)| \mathrm{d}\, u}{\int |x(u)| \mathrm{d}\, u}.
+</script></p>
+<p>Q: is <script type="math/tex; ">\Phi(\cdot)</script> invariant to translation.</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+\Phi(T_\tau x) = \frac{\int u |x(u - \tau)| \mathrm{d}\, u}{\int |x(u -\tau)| \mathrm{d}\, u} = \frac{\int (u+\tau) |x(u)| \mathrm{d}\, u}{\int |x(u)| \mathrm{d}\, u}.
+\end{aligned}
+</script></p>
+<p>Q: Is there a more systematic way to build Group invariant?</p>
+<p>For Abelien group, yes. Assume <script type="math/tex; ">\mathcal{X}</script> is a Hilbert space,</p>
+<p><strong>Definition.</strong> A one-parameter unitary group is a family of operators <script type="math/tex; ">\varphi_t \in \mathrm{Ant}(\mathcal{X})</script> of <script type="math/tex; ">\mathcal{X}</script>, <script type="math/tex; ">\{\varphi_t: \mathcal{X} \rightarrow \mathcal{X}\}_{t \in \mathbb{R}}</script> such that</p>
+<p>(i) <script type="math/tex; ">\forall t, s \in \mathbb{R}, \; \varphi_{s+t} = \varphi_s \cdot \varphi_t</script>.
+(ii) <script type="math/tex; ">\lim_{s \rightarrow t} \|\varphi_s - \varphi_t\| = 0</script>.
+(iii) <script type="math/tex; ">\|\varphi_t x\| = \|x\|, \; \forall x \in \mathcal{X}, \forall t \in \mathbb{R}</script>.</p>
+<p><strong>Theorem [Stone &apos;30].</strong> The set of self-adjoint operator of <script type="math/tex; ">\mathcal{X}</script> is one-on-one to the set of one-parameter unitary group of <script type="math/tex; ">\mathcal{X}</script>.</p>
+<p>(def. <script type="math/tex; ">A</script> is self-adjoint if <script type="math/tex; ">\langle Au, w\rangle = \langle u, Aw \rangle</script>).</p>
+<p>Given <script type="math/tex; ">\{\varphi_t\}_{t\in \mathbb{R}} \rightarrow A</script> self-adjoint, (<script type="math/tex; ">A</script> is the infinitesimal generator of <script type="math/tex; ">\{\varphi_t\}</script>).</p>
+<p><script type="math/tex; mode=display">
+\varphi_s(t) = e^{itA}
+</script></p>
+<p>Therefore, if <script type="math/tex; ">A</script> is self-adjoint, <script type="math/tex; ">\rightarrow</script>, there exists an orthogonal basis <script type="math/tex; ">\{v_k\}</script> of <script type="math/tex; ">\mathcal{X}</script> such that</p>
+<p><script type="math/tex; mode=display">
+A v_k = \lambda_k v_k; \Longrightarrow \; \varphi_t v_k = e^{it \lambda_k} v_k.
+</script></p>
+<p><script type="math/tex; ">x \in \mathcal{X}</script>, <script type="math/tex; ">x = \sum_k \alpha_k v_k</script>. Then,</p>
+<p><script type="math/tex; mode=display">
+\varphi_t x = \sum_k \alpha_k \varphi_t v_k = \sum_k \alpha_k e^{it \lambda_k} v_k
+</script></p>
+<p><strong>Ex.</strong> <script type="math/tex; ">\varphi_t x(u) = x(u-t)</script>, translation. Recall for <script type="math/tex; ">x \in L_2(\mathbb{R}^s)</script>,</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+\hat{x}(\xi) &= \int x(u) e^{-i 2\pi \langle u, \xi\rangle} \, \mathrm{d} \, u \\
+\widehat{\varphi_t x}(\xi) &= \int x(u-t) e^{-i 2\pi \langle u, \xi\rangle} \, \mathrm{d} \, u = e^{2\pi i \langle t, \xi \rangle} \hat{x}(\xi)
+\end{aligned}
+</script></p>
+<p>Consider <script type="math/tex; ">\text{dim} \mathcal{X} = d</script>, <script type="math/tex; ">V \in \mathbb{C}^{d \times d}</script>.</p>
+<p>Q: how to build <script type="math/tex; ">\Phi(\cdot)</script> that is <script type="math/tex; ">\mathcal{G} = \{\varphi_t\}_{t \mathbb{R}}</script> invariant.</p>
+<p><script type="math/tex; mode=display">
+\Phi(x) = \left| V^* x \right|.
+</script></p>
+<p>Claim: <script type="math/tex; ">\Phi(\cdot)</script> is <script type="math/tex; ">\mathcal{G}</script>-invariant.</p>
+<p><strong>Remarks.</strong></p>
+<ul>
+<li><p>For invariance to Abelien strcuture, a single hidden layer is OK.</p>
+</li>
+<li><p>(Shortcomings) <script type="math/tex; ">\Phi(x) = \boldsymbol{0}</script> is also invariant.</p>
+</li>
+<li><p>(Shortcomings) We need representational power besides invariance. In previous example, we killed degree of freedom. Wasteful!</p>
+</li>
+</ul>
+<p><script type="math/tex; mode=display">
+\text{if} \; f^*(x) \neq f(x^\prime), \; \text{we need } \Phi(x) \neq \Phi(x^\prime),
+</script></p>
+<ul>
+<li><p>what to do in the non-commutative case?</p>
+</li>
+<li><p>Preserve information.</p>
+</li>
+<li><p>Global v.s. local invariance.</p>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Lecture 2: Symmetries and Geometric Stability","level":"1.2","depth":1,"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["mathjax","image-captions","github","anchors","anchor-navigation-ex","-sharing","sharing-plus@^0.0.2","github-buttons","embed-pdf","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ZizouHe/"},"livereload":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"github-buttons":{"buttons":[{"user":"ZizouHe","repo":"Math4DL-notes","type":"star","size":"small"}]},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin"],"douban":false,"facebook":true,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"embed-pdf":{},"image-captions":{"caption":"Figure _PAGE_IMAGE_NUMBER_. _CAPTION_","align":"right","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[]},"title":"CS3033 - Maths of Deep Learning","gitbook":"*"},"file":{"path":"contents/lec2.md","mtime":"2020-02-14T02:08:10.938Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-14T02:10:32.901Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
